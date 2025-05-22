@@ -5,14 +5,16 @@ def send_message(host: str, port: int):
     server.settimeout(1)
 
     # send message
+    name = input('type your name: ')
+    
+    name = name.replace(',','').strip()
+    
     while True:
         message = input('type your message:')
+        message = message.replace(',','').strip()
+        
+        message = f'{name}, {message}'
         server.sendto(message.encode(),(HOST, PORT))
-
-        data, addr = server.recvfrom(1024)
-        print(f'[Message]: {data.decode()}')
-
-
 
 if __name__=='__main__':
 
